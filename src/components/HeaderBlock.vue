@@ -1,21 +1,15 @@
 <template>
-  <el-row :gutter="20" justify="space-between" align="middle" tag="header" class="el-header">
-    <el-col :span="6">
-      <h1>Infinity Scroll</h1>
-    </el-col>
-    <el-col :span="4">
-      <el-input clearable :prefix-icon="Search" />
-    </el-col>
-  </el-row>
+  <el-header class="el-header">
+    <h1>Infinity Scroll</h1>
+  </el-header>
 </template>
-
-<script setup>
-import { Search } from '@element-plus/icons-vue';
-</script>
 
 <style lang="scss" scoped>
 .el-header {
   background-color: #3375b9;
+  display: flex;
+  align-items: center;
+  margin: 0 !important;
   h1 {
     color: #ffffff;
     font-weight: bold;

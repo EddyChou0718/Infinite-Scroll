@@ -1,7 +1,9 @@
 <template>
   <el-main id="scroll-block">
-    <RepoCard v-for="repo in repoList" :key="repo.id" :repo="repo" />
-    <!-- <LoadingBlock v-if="loading" /> -->
+    <div>
+      <RepoCard v-for="repo in repoList" :key="repo.id" :repo="repo" />
+    </div>
+    <LoadingBlock v-if="loading" />
   </el-main>
 </template>
 
@@ -10,7 +12,7 @@ import { onMounted, onUnmounted, reactive, ref } from 'vue';
 import { ElMessage } from 'element-plus';
 import getRepos from '@/api';
 import RepoCard from './RepoCard.vue';
-// import LoadingBlock from './LoadingBlock.vue';
+import LoadingBlock from './LoadingBlock.vue';
 
 const loading = ref(false);
 const repoList = ref([]);
@@ -56,10 +58,6 @@ const handleScroll = (ev) => {
 
   if (scrollTop + clientHeight >= scrollHeight) {
     handleRepoList(apiPayload);
-
-    console.log({ scrollTop });
-    console.log({ clientHeight });
-    console.log({ scrollHeight });
   }
 };
 

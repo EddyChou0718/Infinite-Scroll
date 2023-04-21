@@ -13,7 +13,7 @@
   padding: 8px 18px;
   border-radius: 5px;
   left: calc(50% - 45px);
-  top: calc(50% - 18px);
+  bottom: calc(50px);
   .spinner {
     display: inline-block;
     margin: 0 10px;

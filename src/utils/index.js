@@ -1,7 +1,7 @@
 import { Octokit } from 'octokit';
 
 const octokit = new Octokit({
-  auth: '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',
+  auth: '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',
 });
 
 /**
