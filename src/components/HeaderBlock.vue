@@ -13,7 +13,7 @@
   h1 {
     color: #ffffff;
     font-weight: bold;
-    font-size: 2.5rem;
+    font-size: 2rem;
   }
 }
 </style>

@@ -1,18 +1,16 @@
 <template>
   <el-main id="scroll-block">
     <RepoCard v-for="repo in repoList" :key="repo.id" :repo="repo" />
-    <LoadingBlock v-if="loading" id="loading-block" />
     <div id="scroll-end"></div>
   </el-main>
 </template>
 
 <script setup>
-import { onMounted, onUnmounted, reactive, ref } from 'vue';
-import { ElMessage } from 'element-plus';
+import { onMounted, onUnmounted, reactive, ref, watch } from 'vue';
+import { ElMessage, ElLoading } from 'element-plus';
 import getRepos from '@/api';
 import { createObserver } from '@/utils';
 import RepoCard from './RepoCard.vue';
-import LoadingBlock from './LoadingBlock.vue';
 
 const loading = ref(true);
 const repoList = ref([]);
@@ -41,7 +39,7 @@ const handleRepoList = async () => {
       id: i.id,
       name: i.name,
       desc: i.description,
-      url: i.url,
+      url: i.html_url,
     }));
 
     repoList.value = repoList.value.concat(newData);
@@ -58,10 +56,22 @@ const handleRepoList = async () => {
 };
 
 const handleObserver = ({ intersectionRatio }) => {
-  if (intersectionRatio > 0 && !loading.value) {
+  if (intersectionRatio > 0) {
     handleRepoList();
   }
 };
+
+watch(loading, () => {
+  const loadBlock = ElLoading.service({
+    lock: true,
+    text: 'Loading',
+    background: 'rgba(0, 0, 0, 0.7)',
+  });
+
+  if (!loading.value) {
+    loadBlock.close();
+  }
+});
 
 const observer = createObserver(handleObserver);
 
@@ -69,8 +79,6 @@ onMounted(() => {
   const scrollEnd = document.querySelector('#scroll-end');
 
   observer.observe(scrollEnd);
-
-  handleRepoList();
 });
 
 onUnmounted(() => {

@@ -6,9 +6,10 @@
       </h5>
     </template>
     <div class="item">
-      <el-text>{{ repo.desc }}</el-text>
+      <el-text v-if="repo.desc">{{ repo.desc }}</el-text>
+      <el-text v-if="!repo.desc" type="info">No description</el-text>
     </div>
-    <div class="item">
+    <div class="item" v-if="repo.url">
       <el-link :href="repo.url" target="_blank" type="primary">{{ repo.url }}</el-link>
     </div>
   </el-card>
@@ -32,7 +33,12 @@ const { repo } = toRefs(props);
   }
 
   .item {
-    margin-bottom: 1rem;
+    &:not(:last-child) {
+      margin-bottom: 1rem;
+    }
+    .el-text {
+      word-break: break-word;
+    }
   }
 }
 </style>
