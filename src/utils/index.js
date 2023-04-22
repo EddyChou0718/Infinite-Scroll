@@ -1,7 +1,9 @@
 import { Octokit } from 'octokit';
 
+const githubToken = process.env.VUE_APP_GITHUB_TOKEN;
+
 const octokit = new Octokit({
-  auth: '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',
+  auth: githubToken,
 });
 
 /**
