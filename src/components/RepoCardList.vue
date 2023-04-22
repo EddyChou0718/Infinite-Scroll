@@ -47,6 +47,11 @@ const handleRepoList = async () => {
     repoList.value = repoList.value.concat(newData);
 
     apiPayload.page += 1;
+  } else {
+    ElMessage({
+      type: 'error',
+      message: '獲取資料失敗！',
+    });
   }
 
   loading.value = false;

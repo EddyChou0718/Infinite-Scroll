@@ -5,6 +5,7 @@
 ## 專案本機啟動方式
 
 ```
+npm install
 npm run serve
 ```
 
@@ -15,6 +16,6 @@ https://eddychou0718.github.io/infinite-scroll/
 
 ## Github repos owner
 
-[Evan You(yyx990803)](https://github.com/yyx990803)
+[Evan You(yyx990803)](https://github.com/yyx990803?tab=repositories)
 
 
