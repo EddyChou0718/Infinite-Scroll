@@ -1,4 +1,4 @@
-import request from '@/utils';
+import { request } from '@/utils';
 
 /**
  * 取得特定user的Github repos

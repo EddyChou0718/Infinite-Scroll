@@ -1,9 +1,8 @@
 <template>
   <el-main id="scroll-block">
-    <div>
-      <RepoCard v-for="repo in repoList" :key="repo.id" :repo="repo" />
-    </div>
-    <LoadingBlock v-if="loading" />
+    <RepoCard v-for="repo in repoList" :key="repo.id" :repo="repo" />
+    <LoadingBlock v-if="loading" id="loading-block" />
+    <div id="scroll-end"></div>
   </el-main>
 </template>
 
@@ -11,13 +10,14 @@
 import { onMounted, onUnmounted, reactive, ref } from 'vue';
 import { ElMessage } from 'element-plus';
 import getRepos from '@/api';
+import { createObserver } from '@/utils';
 import RepoCard from './RepoCard.vue';
 import LoadingBlock from './LoadingBlock.vue';
 
-const loading = ref(false);
+const loading = ref(true);
 const repoList = ref([]);
 const apiPayload = reactive({
-  username: 'yyx990803', // 使用這名稱
+  username: 'yyx990803', // 使用者名稱
   per_page: 6, // 一頁顯示幾筆
   page: 1, // 第幾頁
 });
@@ -52,27 +52,26 @@ const handleRepoList = async () => {
   loading.value = false;
 };
 
-const handleScroll = (ev) => {
-  const { srcElement } = ev;
-  const { scrollTop, clientHeight, scrollHeight } = srcElement;
-
-  if (scrollTop + clientHeight >= scrollHeight) {
-    handleRepoList(apiPayload);
+const handleObserver = ({ intersectionRatio }) => {
+  if (intersectionRatio > 0 && !loading.value) {
+    handleRepoList();
   }
 };
 
+const observer = createObserver(handleObserver);
+
 onMounted(() => {
+  const scrollEnd = document.querySelector('#scroll-end');
+
+  observer.observe(scrollEnd);
+
   handleRepoList();
-
-  const scrollBlock = document.querySelector('#scroll-block');
-
-  scrollBlock.addEventListener('scroll', handleScroll);
 });
 
 onUnmounted(() => {
-  const scrollBlock = document.querySelector('#scroll-block');
+  const scrollEnd = document.querySelector('#scroll-end');
 
-  scrollBlock.removeEventListener('scroll', handleScroll);
+  observer.unobserve(scrollEnd);
 });
 </script>
 

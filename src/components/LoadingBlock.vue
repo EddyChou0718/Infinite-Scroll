@@ -6,7 +6,6 @@
 
 <style lang="scss" scoped>
 .loading-block {
-  position: fixed;
   text-align: center;
   color: #fff;
   z-index: 99;
