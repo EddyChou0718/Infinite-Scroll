@@ -2,7 +2,7 @@
   "name": "sa-project",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://eddychou0718.github.io/infinite-scroll",
+  "homepage": "https://eddychou0718.github.io/infinite-scroll/",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
