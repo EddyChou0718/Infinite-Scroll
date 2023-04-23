@@ -12,7 +12,7 @@ import getRepos from '@/api';
 import { createObserver } from '@/utils';
 import RepoCard from './RepoCard.vue';
 
-const loading = ref(true);
+const loading = ref(false);
 const repoList = ref([]);
 const apiPayload = reactive({
   username: 'yyx990803', // 使用者名稱
