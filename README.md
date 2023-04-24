@@ -11,7 +11,7 @@ npm run serve
 
 ## Github Page
 
-https://eddychou0718.github.io/infinite-scroll/
+https://eddychou0718.github.io/Infinite-Scroll/
 
 
 ## Github repos owner
