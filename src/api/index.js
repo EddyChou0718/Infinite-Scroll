@@ -4,7 +4,7 @@ import { request } from '@/utils';
  * 取得特定user的Github repos
  *
  * @param {string} user username
- * @param {ReposPayload} query api query
+ * @param {object} query api query
  * @returns {Promise}
  */
 const getRepos = async (query) => {

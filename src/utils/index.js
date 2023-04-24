@@ -10,8 +10,8 @@ const octokit = new Octokit({
  * octokit request
  *
  * @param {string} method API REST
- * @param {*} url API url
- * @param {*} query API query
+ * @param {string} url API url
+ * @param {object} query API query
  */
 const request = async (method, url, query) => {
   return octokit.request(`${method} ${url}`, query);
@@ -21,7 +21,7 @@ const request = async (method, url, query) => {
  * createObserver
  *
  * @param {Function} callback callback
- * @param {Object?} options Observer Options
+ * @param {object?} options Observer Options
  */
 const createObserver = (callback, options = {}) => {
   const observer = new IntersectionObserver((entries) => {
